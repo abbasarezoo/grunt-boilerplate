@@ -199,8 +199,6 @@ You will notice in our Gruntfile a number of sub-tasks within our *watch* task. 
 
 To run the *watch* task simply run `$ grunt watch` and you're good to go.
 
-## Live reload
-
 ## Finishing up
 
 While this guide is a super-simple introduction to Grunt, it is a great jumping off point for bigger and better things. My advice would be to get to grips with some basic tasks first, then start experimenting with some of the more complex tasks once you're comfortable. 
