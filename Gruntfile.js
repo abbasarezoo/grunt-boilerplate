@@ -1,7 +1,15 @@
+// ====================================================================================================
+// WELCOME TO YOUR GRUNTFILE
+// Warning: if you have changed your directory structure and/or naming conventions 
+// you need to reflect this below
+// ====================================================================================================
+
+
 module.exports = function(grunt) {
 
     // ====================================================================================================
     // LOAD PLUGINS
+    // If you download a new plugin be sure to add it to the list below
     // ====================================================================================================
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -14,6 +22,7 @@ module.exports = function(grunt) {
 
     // ====================================================================================================
     // SETUP INDIVIDUAL TASKS
+    // It's good practice to add a comma after each task otherwise you can encounter problems
     // ====================================================================================================
 
     grunt.initConfig({
@@ -43,7 +52,7 @@ module.exports = function(grunt) {
         // CSS
         // =========================
 
-        // Compile CSS files
+        // Compile Sass files
 
         sass: {
             
@@ -63,7 +72,7 @@ module.exports = function(grunt) {
 
         },
 
-        // Add sourcemap, vendor prefixes and minify output
+        // Add sourcemap, vendor prefixes and minify to a final CSS file
 
         postcss: {
             
@@ -89,6 +98,7 @@ module.exports = function(grunt) {
         // =========================
 
         // Concatenate all local Javascript files into a single file
+        // Targets all files inside the _js-src directory
 
         uglify: {
 
@@ -129,11 +139,11 @@ module.exports = function(grunt) {
 
             html: {
 
-                files: ['_html-src/*.html', '_html-src/**/*.kit'], // Looks for any files added or changed in this directory with the .kit and .html extensions ...
-                tasks: ['kit'], // ... and runs the 'kit' task ...
+                files: ['_html-src/*.html', '_html-src/**/*.kit'], // Looks for any files added or changed in this directory with the .kit and .html extensions
+                tasks: ['kit'], // Runs the 'kit' task
                     options: {
                         spawn: false,
-                        livereload:35729,
+                        livereload:35729, // Reloads the browser
                         event: ['added', 'changed']
                     },
 
@@ -141,11 +151,11 @@ module.exports = function(grunt) {
 
             css: {
 
-                files: ['_css-src/**/*.scss'], // Looks for any files added or changed in this directory with the .scss extension ...
-                tasks: ['css'], // ... and runs the 'css' task ...
+                files: ['_css-src/**/*.scss'], // Looks for any files added or changed in this directory with the .scss extension
+                tasks: ['css'], // Runs the 'css' task
                     options: {
                         spawn: false,
-                        livereload:35729,
+                        livereload:35729, // Reloads the browser
                         event: ['added', 'changed']
                     },
 
@@ -153,11 +163,11 @@ module.exports = function(grunt) {
 
             js: {
 
-                files: ['_js-src/*.js'], // Looks for any files added or changed in this directory with the .js extension ...
-                tasks: ['js'], // ... and runs the 'js' task ...
+                files: ['_js-src/*.js'], // Looks for any files added or changed in this directory with the .js extension
+                tasks: ['js'], // Runs the 'js' task
                     options: {
                         spawn: false,
-                        livereload:35729,
+                        livereload:35729, // Reloads the browser
                         event: ['added', 'changed']
                     },
                     
@@ -165,11 +175,11 @@ module.exports = function(grunt) {
 
             img: {
 
-                files: ['_img-src/**'], // Looks for any images added or changed in this directory ...
-                tasks: ['img'], // ... and runs the 'img' task ...
+                files: ['_img-src/**'], // Looks for any images added or changed in this directory
+                tasks: ['img'], // Runs the 'img' task
                     options: {
                         spawn: false,
-                        livereload:35729,
+                        livereload:35729, // Reloads the browser
                         event: ['added', 'changed']
                     },
                     
@@ -178,8 +188,9 @@ module.exports = function(grunt) {
         },
 
         // ====================================================================================================
-        // NOTIFICATIONS
+        // NOTIFICATION TASK
         // Get a notification when the task has ran successfully or when it fails
+        // If you don't want notifications you can delete these tasks or comment them out
         // ====================================================================================================
 
         notify: {
@@ -221,6 +232,8 @@ module.exports = function(grunt) {
 
     // ====================================================================================================
     // REGISTER TASKS
+    // Run tasks individual tasks in the command line like: $ grunt css
+    // Running $ grunt watch will trigger one of the tasks below depending on the watch task configuration
     // ====================================================================================================
 
     grunt.registerTask('css', ['sass', 'postcss', 'notify:sass']);
